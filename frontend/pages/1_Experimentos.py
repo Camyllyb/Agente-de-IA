@@ -89,11 +89,20 @@ with st.sidebar:
     sel_strategies = st.multiselect("Técnica", strategies, default=strategies)
     sel_categories = st.multiselect("Categoria", categories, default=categories)
 
+    exp_types = sorted(x for x in df.get("experiment_type", pd.Series(dtype=str)).dropna().unique())
+    sel_exp_types = exp_types
+    if len(exp_types) > 1:
+        st.markdown("**Tipo de experimento**")
+        st.caption("Experimento A (llm_only) e B (agent) nunca são misturados.")
+        sel_exp_types = st.multiselect("Tipo", exp_types, default=exp_types)
+
 mask = (
     df["model"].isin(sel_models)
     & df["strategy"].isin(sel_strategies)
     & df["category"].isin(sel_categories)
 )
+if "experiment_type" in df.columns and exp_types:
+    mask = mask & df["experiment_type"].isin(sel_exp_types)
 df = df[mask]
 if df.empty:
     st.warning("Nenhum registro para os filtros selecionados.")
@@ -142,6 +151,28 @@ st.dataframe(
     hide_index=True,
 )
 st.caption("Clareza/Relevância/Completude vêm da avaliação humana (importe o CSV cego para incluí-las).")
+
+# --- Métricas agentivas (Experimento B) -------------------------------------
+agent_df = df[df.get("experiment_type") == "agent"] if "experiment_type" in df.columns else df
+if not agent_df.empty and agent_df["tool_required"].any():
+    from app.metrics import (
+        data_grounding_accuracy,
+        task_success_rate,
+        tool_execution_success_rate,
+        tool_selection_accuracy,
+    )
+
+    st.subheader("Métricas agentivas (Experimento B)")
+    rows = agent_df.to_dict("records")
+
+    def _pct(v):
+        return f"{v:.1%}" if v is not None else "—"
+
+    a1, a2, a3, a4 = st.columns(4)
+    a1.metric("Tool Selection", _pct(tool_selection_accuracy(rows)))
+    a2.metric("Tool Execution", _pct(tool_execution_success_rate(rows)))
+    a3.metric("Data Grounding", _pct(data_grounding_accuracy(rows)))
+    a4.metric("Task Success", _pct(task_success_rate(rows)))
 
 
 # --- Gráficos ---------------------------------------------------------------

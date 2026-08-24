@@ -114,6 +114,48 @@ Os testes **não** dependem de internet, de chaves de API ou de créditos pagos.
 
 ---
 
+## Fluxo experimental científico (benchmark de 30 questões)
+
+Infraestrutura para o experimento definitivo (30 questões: 6 por categoria —
+factual, cálculo, comparação, interpretação, uso de ferramentas — e 10 por
+dificuldade). **Nenhum valor financeiro é fabricado**: os gabaritos só são
+gerados a partir de snapshots reais **congelados**.
+
+```bash
+# 1. Importar a planilha experimental (gera rascunhos; não fabrica gabaritos)
+python -m app.data_import --excel data/imports/dataset_experimental_agente_financeiro.xlsx
+
+# 2. Coletar dados reais (Brapi/CVM/CSV) e congelar um snapshot com checksum
+#    (via app.snapshots.SnapshotManager) — nova coleta => novo snapshot_id
+
+# 3. Gerar/validar gabaritos determinísticos a partir do snapshot congelado
+python -m experiments.references validate
+
+# 4. Congelar o protocolo experimental (dataset, prompts, modelos, métricas)
+
+# 5. Piloto (PILOT_ONLY) para achar problemas metodológicos
+python -m experiments.pilot --oracle          # offline; ou --provider p --model m
+
+# 6. Auditoria de prontidão (bloqueia o experimento final se algo crítico falhar)
+python -m experiments.readiness
+
+# 7. Experimento final (A = LLM isolado; B = agente) — exige prontidão + --yes
+python -m experiments.runner --models-config --experiment-type llm_only --final --yes
+python -m experiments.runner --models-config --experiment-type agent --final --yes
+
+# 8. Pacote de reprodutibilidade (sem segredos)
+python -m experiments.reproducibility
+```
+
+Componentes: **importadores desacoplados** (`app/data_import`: Excel/CSV/Brapi/CVM),
+**SnapshotManager** (congela + checksum SHA-256), **ReferenceAnswerGenerator**
+(gabaritos auditáveis), **ExperimentProtocol** (congelável, versionado),
+**Experimento A/B** (`experiment_type` nunca misturado), **piloto**, **readiness**,
+**avaliação humana cega definitiva** (IDs `R000001`, concordância Kappa/Krippendorff)
+e **reprodutibilidade**.
+
+---
+
 ## Arquitetura
 
 ```

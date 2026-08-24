@@ -1,0 +1,13 @@
+{
+  "factual_precision": "Acerto numérico/categórico da resposta vs. referência (com tolerância).",
+  "latency_ms": "Tempo de resposta em milissegundos.",
+  "tokens": "Tokens de entrada, saída e total.",
+  "estimated_cost": "Custo estimado via tabela de preços versionada (null se não configurada).",
+  "success_rate": "Fração de execuções sem erro.",
+  "tool_selection_accuracy": "(Agente) ferramenta esperada foi utilizada.",
+  "tool_execution_success": "(Agente) chamadas de ferramenta retornaram dados válidos.",
+  "data_grounding": "(Agente) resposta fundamentada nos dados obtidos.",
+  "task_success": "Tarefa concluída com sucesso.",
+  "human_criteria": "Avaliação humana 1-5: relevância, clareza, completude, precisão percebida.",
+  "agreement": "Concordância entre avaliadores: Cohen/weighted Kappa, Krippendorff's Alpha."
+}

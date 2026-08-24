@@ -8,9 +8,11 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
-# Colunas registradas para cada execução (ver PROMPT 7).
+# Colunas registradas para cada execução (ver PROMPT 7 / 17 / 18).
 COLUMNS: tuple[str, ...] = (
     "experiment_id",
+    "experiment_type",     # "llm_only" | "agent" (nunca misturados)
+    "protocol_checksum",   # checksum do protocolo congelado
     "timestamp",
     "question_id",
     "category",
@@ -53,6 +55,15 @@ class ResultStore:
             f"CREATE TABLE IF NOT EXISTS runs (\n"
             f"  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  {cols_sql}\n)"
         )
+        self._conn.commit()
+        self._migrate_missing_columns()
+
+    def _migrate_missing_columns(self) -> None:
+        """Adiciona colunas novas a bancos antigos (compatibilidade)."""
+        existing = {row[1] for row in self._conn.execute("PRAGMA table_info(runs)")}
+        for column in COLUMNS:
+            if column not in existing:
+                self._conn.execute(f"ALTER TABLE runs ADD COLUMN {column} TEXT")
         self._conn.commit()
 
     def insert(self, record: dict[str, Any]) -> None:

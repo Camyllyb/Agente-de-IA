@@ -13,6 +13,12 @@ from app.metrics.aggregate import (
     tool_accuracy,
     tool_correct,
 )
+from app.metrics.agentic import (
+    data_grounding_accuracy,
+    task_success_rate,
+    tool_execution_success_rate,
+    tool_selection_accuracy,
+)
 from app.metrics.answer_parsing import extract_number, final_answer_line
 from app.metrics.factual import FactualScore, score_answer
 from app.metrics.human_eval import (
@@ -24,6 +30,18 @@ from app.metrics.human_eval import (
 )
 from app.metrics.llm_judge import judge_answer
 from app.metrics.pricing import PriceTable, load_price_table
+from app.metrics.agreement import (
+    cohen_kappa,
+    krippendorff_alpha,
+    pairwise_kappa_matrix,
+    weighted_kappa,
+)
+from app.metrics.human_eval_final import (
+    CRITERIA_FINAL,
+    compute_agreement,
+    generate_final_blind_evaluation,
+    import_final_blind_evaluation,
+)
 
 __all__ = [
     # factual / parsing

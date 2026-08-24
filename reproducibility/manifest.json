@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-24T21:33:21.909099+00:00",
+  "git_commit": "32ccdaa718aca84cd93e9d89b3a2d6bb2aca94d6",
+  "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "prompt_versions": {
+    "zero_shot": "zero_shot_v1",
+    "few_shot": "few_shot_v1",
+    "chain_of_thought": "chain_of_thought_v1"
+  },
+  "checksums": {
+    "dataset.json": "ecf51cc39853a243ca5671556244da07dd943d364ac73a3105d296d27d103d3d",
+    "protocol.json": "742a3b644e10969d8e52e1afe6fc230c0895341f475452ee57ce4b32d42c0072",
+    "snapshot_metadata.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "contains_secrets": false
+}

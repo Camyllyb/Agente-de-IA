@@ -81,12 +81,26 @@ def _parse_args(argv=None):
     parser.add_argument("--db", default=None, help="Caminho do SQLite.")
     parser.add_argument("--export", default=None, help="Exporta CSV ao final.")
     parser.add_argument("--yes", action="store_true", help="Confirma chamadas a provedores reais (pagas).")
+    parser.add_argument("--experiment-type", default="agent", choices=["agent", "llm_only"])
+    parser.add_argument("--final", action="store_true",
+                        help="Experimento final: exige auditoria de prontidão aprovada.")
     return parser.parse_args(argv)
 
 
 def main(argv=None) -> None:
     args = _parse_args(argv)
     settings = get_settings()
+
+    # Experimento final só prossegue se a auditoria de prontidão aprovar.
+    if args.final:
+        from experiments.readiness import assert_ready_for_final, run_readiness
+
+        try:
+            assert_ready_for_final()
+        except RuntimeError as exc:
+            print(run_readiness().render())
+            print(f"\n{exc}")
+            return
 
     experiment_id = args.experiment_id or _default_experiment_id()
     questions = load_questions(args.questions)
@@ -104,6 +118,7 @@ def main(argv=None) -> None:
         dry_run=args.dry_run,
         randomize=args.randomize,
         seed=args.seed,
+        experiment_type=args.experiment_type,
     )
 
     store = ResultStore(args.db or settings.database_path)

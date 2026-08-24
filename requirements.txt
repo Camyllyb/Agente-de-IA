@@ -23,6 +23,7 @@ langgraph>=0.2
 
 # --- Dados / análise --------------------------------------------------------
 pandas>=2.2
+openpyxl>=3.1          # leitura/escrita de planilhas .xlsx (importação do dataset)
 
 # --- Interface --------------------------------------------------------------
 streamlit>=1.36

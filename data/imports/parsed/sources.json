@@ -1,0 +1,38 @@
+[
+  {
+    "id": "SRC001",
+    "name": "Brapi",
+    "data_type": "Cotações/histórico de ativos da B3",
+    "url": "https://brapi.dev/docs",
+    "usage": "OHLCV e histórico de ações/FIIs quando disponível",
+    "verified_at": "2026-08-24",
+    "notes": "Registrar endpoint e parâmetros usados na coleta."
+  },
+  {
+    "id": "SRC002",
+    "name": "CVM — Informe Mensal de FII",
+    "data_type": "Dados periódicos oficiais de FIIs",
+    "url": "https://dados.cvm.gov.br/dataset/fii-doc-inf_mensal",
+    "usage": "Patrimônio, cotistas, cotas e informações periódicas",
+    "verified_at": "2026-08-24",
+    "notes": "Preferir esta fonte para dados regulatórios dos FIIs."
+  },
+  {
+    "id": "SRC003",
+    "name": "CVM — Arquivos de Informe Mensal",
+    "data_type": "Arquivos anuais ZIP",
+    "url": "https://dados.cvm.gov.br/dados/FII/DOC/INF_MENSAL/DADOS/",
+    "usage": "Download dos arquivos históricos do informe mensal",
+    "verified_at": "2026-08-24",
+    "notes": null
+  },
+  {
+    "id": "SRC004",
+    "name": "B3",
+    "data_type": "Índices e informações de mercado",
+    "url": "https://www.b3.com.br/pt_br/market-data-e-indices/indices/",
+    "usage": "Referência para IBOV/IFIX e validação de mercado",
+    "verified_at": "2026-08-24",
+    "notes": null
+  }
+]

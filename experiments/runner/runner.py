@@ -35,6 +35,8 @@ class RunnerConfig:
     randomize: bool = False
     seed: int = 42
     recursion_limit: int = 25
+    experiment_type: str = "agent"          # "agent" | "llm_only" (nunca misturados)
+    protocol_checksum: str | None = None    # checksum do protocolo congelado
 
 
 @dataclass
@@ -158,6 +160,8 @@ class ExperimentRunner:
         question = unit.question
         base_record = {
             "experiment_id": self.config.experiment_id,
+            "experiment_type": self.config.experiment_type,
+            "protocol_checksum": self.config.protocol_checksum,
             "timestamp": _now(),
             "question_id": question.get("id"),
             "category": question.get("category"),
@@ -183,12 +187,17 @@ class ExperimentRunner:
 
         try:
             provider = unit.model.build(question)
-            agent = FinancialAgent(
-                model=provider,
-                prompt_strategy=unit.strategy,
-                market_data_provider=self.market,
-                recursion_limit=self.config.recursion_limit,
-            )
+            if self.config.experiment_type == "llm_only":
+                from app.agents import LLMOnlyAgent
+
+                agent = LLMOnlyAgent(model=provider, prompt_strategy=unit.strategy)
+            else:
+                agent = FinancialAgent(
+                    model=provider,
+                    prompt_strategy=unit.strategy,
+                    market_data_provider=self.market,
+                    recursion_limit=self.config.recursion_limit,
+                )
             result = agent.run(question.get("question", ""))
         except Exception as exc:  # falha registrada; execução continua
             logger.warning("Falha em %s/%s: %s", question.get("id"), unit.strategy, exc)

@@ -1,0 +1,122 @@
+[
+  {
+    "ticker": "PETR4",
+    "name": "Petróleo Brasileiro S.A. - Petrobras PN",
+    "asset_type": "Ação",
+    "segment": "Petróleo e gás",
+    "benchmark": "IBOV",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/B3",
+    "notes": null
+  },
+  {
+    "ticker": "VALE3",
+    "name": "Vale S.A. ON",
+    "asset_type": "Ação",
+    "segment": "Mineração",
+    "benchmark": "IBOV",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/B3",
+    "notes": null
+  },
+  {
+    "ticker": "ITUB4",
+    "name": "Itaú Unibanco PN",
+    "asset_type": "Ação",
+    "segment": "Financeiro",
+    "benchmark": "IBOV",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/B3",
+    "notes": null
+  },
+  {
+    "ticker": "BBAS3",
+    "name": "Banco do Brasil ON",
+    "asset_type": "Ação",
+    "segment": "Financeiro",
+    "benchmark": "IBOV",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/B3",
+    "notes": null
+  },
+  {
+    "ticker": "WEGE3",
+    "name": "WEG ON",
+    "asset_type": "Ação",
+    "segment": "Indústria",
+    "benchmark": "IBOV",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/B3",
+    "notes": null
+  },
+  {
+    "ticker": "HGLG11",
+    "name": "CSHG Logística FII",
+    "asset_type": "FII",
+    "segment": "Logística",
+    "benchmark": "IFIX",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/CVM",
+    "notes": null
+  },
+  {
+    "ticker": "MXRF11",
+    "name": "Maxi Renda FII",
+    "asset_type": "FII",
+    "segment": "Papel/Multiestratégia",
+    "benchmark": "IFIX",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/CVM",
+    "notes": null
+  },
+  {
+    "ticker": "KNRI11",
+    "name": "Kinea Renda Imobiliária FII",
+    "asset_type": "FII",
+    "segment": "Híbrido",
+    "benchmark": "IFIX",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/CVM",
+    "notes": null
+  },
+  {
+    "ticker": "XPML11",
+    "name": "XP Malls FII",
+    "asset_type": "FII",
+    "segment": "Shoppings",
+    "benchmark": "IFIX",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/CVM",
+    "notes": null
+  },
+  {
+    "ticker": "VISC11",
+    "name": "Vinci Shopping Centers FII",
+    "asset_type": "FII",
+    "segment": "Shoppings",
+    "benchmark": "IFIX",
+    "use_in_experiment": true,
+    "preferred_source": "Brapi/CVM",
+    "notes": null
+  },
+  {
+    "ticker": "IBOV",
+    "name": "Índice Bovespa",
+    "asset_type": "Índice",
+    "segment": "Ações",
+    "benchmark": null,
+    "use_in_experiment": true,
+    "preferred_source": "B3",
+    "notes": "Benchmark para ações"
+  },
+  {
+    "ticker": "IFIX",
+    "name": "Índice de Fundos de Investimentos Imobiliários",
+    "asset_type": "Índice",
+    "segment": "FIIs",
+    "benchmark": null,
+    "use_in_experiment": true,
+    "preferred_source": "B3",
+    "notes": "Benchmark para FIIs"
+  }
+]

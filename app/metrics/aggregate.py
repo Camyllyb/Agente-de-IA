@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 from typing import Any, Iterable
 
+from app.metrics.agentic import data_grounding, task_success, tool_execution_success
 from app.metrics.factual import score_answer
 from app.metrics.pricing import PriceTable
 
@@ -62,6 +63,7 @@ def build_scored_records(
     for record in records:
         expected = _load_json(record.get("expected_answer")) or {}
         tools_called = _load_json(record.get("tools_called")) or []
+        tool_calls = _load_json(record.get("financial_data")) or []
         answer = record.get("answer") or ""
 
         factual = score_answer(expected, answer)
@@ -69,6 +71,10 @@ def build_scored_records(
         expected_tools = question.get("expected_tools") or []
 
         success = not record.get("error")
+        tcorrect = tool_correct(expected_tools, tools_called)
+        exec_ok = tool_execution_success(tool_calls)
+        grounded = data_grounding(factual.applicable, factual.correct, exec_ok, tools_called)
+        task_ok = task_success(success, factual.applicable, factual.correct, answer)
         input_tokens = _to_int(record.get("input_tokens"))
         output_tokens = _to_int(record.get("output_tokens"))
         cost = _to_float(record.get("estimated_cost"))
@@ -88,7 +94,11 @@ def build_scored_records(
                 "predicted_value": factual.predicted,
                 "expected_value": factual.expected,
                 "tool_required": bool(expected_tools),
-                "tool_correct": tool_correct(expected_tools, tools_called),
+                "tool_correct": tcorrect,
+                "tool_execution_ok": exec_ok,
+                "data_grounded": grounded,
+                "task_success": task_ok,
+                "experiment_type": record.get("experiment_type"),
                 "estimated_cost": cost,
             }
         )

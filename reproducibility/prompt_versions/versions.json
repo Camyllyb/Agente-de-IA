@@ -1,0 +1,5 @@
+{
+  "zero_shot": "zero_shot_v1",
+  "few_shot": "few_shot_v1",
+  "chain_of_thought": "chain_of_thought_v1"
+}
