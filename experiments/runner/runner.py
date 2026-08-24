@@ -165,6 +165,7 @@ class ExperimentRunner:
             "timestamp": _now(),
             "question_id": question.get("id"),
             "category": question.get("category"),
+            "difficulty": question.get("difficulty"),
             "provider": unit.model.provider,
             "model": unit.model.model,
             "strategy": unit.strategy,

@@ -39,6 +39,10 @@ class ChatResponse(BaseModel):
     model: str
     data_source: str
     tools_used: list[str] = Field(default_factory=list)
+    data_used: list[dict] = Field(
+        default_factory=list,
+        description="Dados estruturados obtidos das ferramentas (ativo, valor, data, moeda, fonte).",
+    )
     metrics: Metrics
 
 

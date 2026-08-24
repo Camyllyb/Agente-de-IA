@@ -1,1 +1,0 @@
-"""Utilitários da interface Streamlit."""

@@ -1,11 +1,15 @@
-# Tema da interface Streamlit — aparência limpa, acadêmica e profissional.
+# Tema — aparência moderna, limpa e profissional (azul escuro / branco / cinza).
 [theme]
 base = "light"
-primaryColor = "#4F46E5"
+primaryColor = "#1E4E79"
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F4F5FA"
-textColor = "#1E2230"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#1B2733"
 font = "sans serif"
+
+[client]
+# Navegação é controlada por st.navigation (evita menu automático duplicado).
+showSidebarNavigation = false
 
 [server]
 headless = true

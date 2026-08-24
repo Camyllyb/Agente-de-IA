@@ -1,0 +1,97 @@
+/* Financial Prompt Lab — folha de estilo da aplicação
+   Paleta: azul escuro (#1E4E79 / #123A5E), branco, cinza claro, verde discreto. */
+
+:root {
+  --fpl-primary: #1E4E79;
+  --fpl-primary-dark: #123A5E;
+  --fpl-primary-soft: #E8EEF5;
+  --fpl-ink: #1B2733;
+  --fpl-muted: #64748B;
+  --fpl-line: #E4E9F0;
+  --fpl-surface: #FFFFFF;
+  --fpl-surface-2: #F5F7FA;
+  --fpl-positive: #15803D;
+  --fpl-negative: #B4232A;
+}
+
+/* Base ---------------------------------------------------------------------- */
+html, body, [class*="css"] { color: var(--fpl-ink); }
+.block-container { padding-top: 1.6rem; padding-bottom: 3rem; max-width: 1180px; }
+
+/* Sidebar ------------------------------------------------------------------- */
+section[data-testid="stSidebar"] {
+  background: linear-gradient(180deg, #0F2C48 0%, #123A5E 100%);
+}
+section[data-testid="stSidebar"] * { color: #E8EEF5 !important; }
+section[data-testid="stSidebar"] a {
+  border-radius: 10px !important;
+  padding: 2px 6px !important;
+}
+section[data-testid="stSidebar"] .fpl-brand {
+  font-size: 1.15rem; font-weight: 750; letter-spacing: .2px; margin: .2rem 0 .1rem;
+}
+section[data-testid="stSidebar"] .fpl-brand-sub {
+  font-size: .78rem; opacity: .8; margin-bottom: .8rem;
+}
+
+/* Cabeçalho (hero) ---------------------------------------------------------- */
+.fpl-hero {
+  background: linear-gradient(120deg, var(--fpl-primary-dark) 0%, var(--fpl-primary) 60%, #2C6DA3 100%);
+  border-radius: 16px; padding: 22px 26px; color: #FFFFFF;
+  box-shadow: 0 8px 26px rgba(18,58,94,0.20); margin-bottom: 1.3rem;
+}
+.fpl-hero-title { font-size: 1.7rem; font-weight: 760; line-height: 1.12; margin: 0; }
+.fpl-hero-sub { font-size: .98rem; opacity: .92; margin-top: .35rem; max-width: 720px; }
+
+/* Título de seção ----------------------------------------------------------- */
+.fpl-section { font-size: 1.05rem; font-weight: 700; color: var(--fpl-primary-dark);
+  margin: 1.2rem 0 .4rem; padding-bottom: .3rem; border-bottom: 2px solid var(--fpl-primary-soft); }
+
+/* Cards --------------------------------------------------------------------- */
+.fpl-card {
+  background: var(--fpl-surface); border: 1px solid var(--fpl-line); border-radius: 14px;
+  padding: 16px 18px; box-shadow: 0 2px 10px rgba(27,39,51,0.04); height: 100%;
+}
+.fpl-card-label { font-size: .78rem; color: var(--fpl-muted); text-transform: uppercase;
+  letter-spacing: .06em; font-weight: 600; }
+.fpl-card-value { font-size: 1.5rem; font-weight: 740; color: var(--fpl-ink); margin-top: .15rem; }
+.fpl-card-sub { font-size: .8rem; color: var(--fpl-muted); margin-top: .1rem; }
+.fpl-up { color: var(--fpl-positive); }
+.fpl-down { color: var(--fpl-negative); }
+
+/* Chips --------------------------------------------------------------------- */
+.fpl-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: .35rem 0; }
+.fpl-chip { background: var(--fpl-surface-2); border: 1px solid var(--fpl-line);
+  border-radius: 999px; padding: 4px 12px; font-size: .8rem; color: var(--fpl-ink); }
+.fpl-chip b { color: var(--fpl-primary-dark); font-weight: 650; }
+
+/* Status badge -------------------------------------------------------------- */
+.fpl-badge { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem;
+  font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+.fpl-badge.ok { background: #E8F5EC; color: var(--fpl-positive); }
+.fpl-badge.down { background: #FBEAEA; color: var(--fpl-negative); }
+
+/* Chat ---------------------------------------------------------------------- */
+.fpl-answer { background: var(--fpl-surface-2); border-left: 3px solid var(--fpl-primary);
+  border-radius: 10px; padding: 12px 14px; margin: .3rem 0; }
+.fpl-answer h4 { margin: 0 0 .2rem; font-size: .82rem; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--fpl-primary-dark); }
+
+/* Sugestões (botões) -------------------------------------------------------- */
+.stButton > button {
+  border-radius: 10px; border: 1px solid var(--fpl-line);
+}
+.stButton > button:hover { border-color: var(--fpl-primary); color: var(--fpl-primary-dark); }
+
+/* Empty state --------------------------------------------------------------- */
+.fpl-empty { text-align: center; color: var(--fpl-muted); padding: 2.2rem 1rem;
+  border: 1px dashed var(--fpl-line); border-radius: 14px; background: var(--fpl-surface-2); }
+.fpl-empty-title { font-weight: 650; color: var(--fpl-ink); margin-bottom: .3rem; }
+
+/* Rodapé -------------------------------------------------------------------- */
+.fpl-footer { color: var(--fpl-muted); font-size: .78rem; margin-top: 2rem; text-align: center; }
+
+/* Ocultar chrome padrão do Streamlit --------------------------------------- */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+[data-testid="stDecoration"] { display: none; }

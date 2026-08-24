@@ -16,6 +16,7 @@ COLUMNS: tuple[str, ...] = (
     "timestamp",
     "question_id",
     "category",
+    "difficulty",
     "provider",
     "model",
     "strategy",

@@ -11,6 +11,8 @@ respostas HTTP limpas — este serviço não constrói respostas HTTP.
 
 from __future__ import annotations
 
+import json
+
 from app.agents import FinancialAgent
 from app.config.logging import get_logger
 from app.config.settings import get_settings
@@ -93,6 +95,7 @@ def run_chat(request: ChatRequest) -> ChatResponse:
         model=result.model,
         data_source=data_source,
         tools_used=result.tools_used,
+        data_used=_extract_data_used(result.tool_calls),
         metrics=Metrics(
             latency_ms=result.latency_ms,
             input_tokens=result.usage.input_tokens,
@@ -100,3 +103,56 @@ def run_chat(request: ChatRequest) -> ChatResponse:
             total_tokens=result.usage.total_tokens,
         ),
     )
+
+
+def _extract_data_used(tool_calls) -> list[dict]:
+    """Converte as saídas das ferramentas em linhas (ativo, valor, data, moeda, fonte).
+
+    Nunca inventa: quando um dado não foi encontrado, marca como indisponível.
+    """
+    rows: list[dict] = []
+    for call in tool_calls or []:
+        output = call.output
+        if isinstance(output, str):
+            try:
+                output = json.loads(output)
+            except (json.JSONDecodeError, TypeError):
+                continue
+        if not isinstance(output, dict):
+            continue
+
+        # compare_stocks: uma linha por cotação
+        if "quotes" in output:
+            for quote in output.get("quotes", []):
+                rows.append({
+                    "ativo": quote.get("symbol"), "valor": quote.get("price"),
+                    "data": quote.get("date"), "moeda": quote.get("currency"),
+                    "fonte": quote.get("source"),
+                })
+            continue
+
+        if output.get("found") is False:
+            rows.append({"ativo": output.get("symbol"), "valor": "Indisponível",
+                         "data": None, "moeda": None, "fonte": output.get("source")})
+            continue
+
+        if output.get("return_pct") is not None:  # calculate_return
+            rows.append({
+                "ativo": output.get("symbol"),
+                "valor": f"{output.get('return_pct')}%",
+                "data": f"{output.get('start_observed_date')} → {output.get('end_observed_date')}",
+                "moeda": output.get("currency"), "fonte": output.get("source"),
+            })
+        elif "price" in output:  # get_stock_quote
+            rows.append({"ativo": output.get("symbol"), "valor": output.get("price"),
+                         "data": output.get("date"), "moeda": output.get("currency"),
+                         "fonte": output.get("source")})
+        elif "bars" in output and output.get("bars"):  # get_stock_history
+            bars = output["bars"]
+            rows.append({
+                "ativo": output.get("symbol"),
+                "valor": f"{bars[0]['close']} → {bars[-1]['close']}",
+                "data": f"{output.get('start_date')} → {output.get('end_date')}",
+                "moeda": output.get("currency"), "fonte": output.get("source"),
+            })
+    return rows

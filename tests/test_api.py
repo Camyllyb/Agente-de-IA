@@ -113,3 +113,27 @@ def test_chat_validation_error_returns_422() -> None:
     """Falta o campo obrigatório 'message' -> validação do FastAPI (422)."""
     response = client.post("/api/chat", json={"strategy": "zero_shot"})
     assert response.status_code == 422
+
+
+def test_extract_data_used_from_tool_outputs() -> None:
+    """A resposta do chat converte saídas de ferramentas em linhas estruturadas."""
+    import json
+
+    from app.models.agent import ToolCallRecord
+    from app.services.agent_service import _extract_data_used
+
+    calls = [
+        ToolCallRecord(name="get_stock_quote", args={},
+                       output=json.dumps({"found": True, "symbol": "PETR4.SA", "price": 41.0,
+                                          "currency": "BRL", "date": "2024-07-01", "source": "snapshot:default"})),
+        ToolCallRecord(name="calculate_return", args={},
+                       output=json.dumps({"found": True, "symbol": "PETR4.SA", "return_pct": 5.0,
+                                          "currency": "BRL", "start_observed_date": "2024-01-02",
+                                          "end_observed_date": "2024-06-03", "source": "snapshot:default"})),
+        ToolCallRecord(name="get_stock_quote", args={},
+                       output=json.dumps({"found": False, "symbol": "XPTO", "source": "snapshot:default"})),
+    ]
+    rows = _extract_data_used(calls)
+    assert rows[0]["ativo"] == "PETR4.SA" and rows[0]["valor"] == 41.0
+    assert rows[1]["valor"] == "5.0%"
+    assert rows[2]["valor"] == "Indisponível"  # nunca inventa
