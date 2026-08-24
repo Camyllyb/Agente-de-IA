@@ -1,0 +1,69 @@
+{
+  "symbol": "ITUB4.SA",
+  "currency": "BRL",
+  "as_of": "2024-07-01",
+  "note": "Dados SINTÉTICOS para teste de pipeline — não representam valores reais de mercado.",
+  "quote": {
+    "price": 35.5,
+    "date": "2024-07-01",
+    "timestamp": "2024-07-01T21:00:00Z"
+  },
+  "history": [
+    {
+      "date": "2024-01-02",
+      "open": 33.0,
+      "high": 33.33,
+      "low": 32.67,
+      "close": 33.0,
+      "volume": 1000000
+    },
+    {
+      "date": "2024-02-01",
+      "open": 33.0,
+      "high": 34.84,
+      "low": 32.67,
+      "close": 34.5,
+      "volume": 1050000
+    },
+    {
+      "date": "2024-03-01",
+      "open": 34.5,
+      "high": 34.84,
+      "low": 33.41,
+      "close": 33.75,
+      "volume": 1100000
+    },
+    {
+      "date": "2024-04-01",
+      "open": 33.75,
+      "high": 35.35,
+      "low": 33.41,
+      "close": 35.0,
+      "volume": 1150000
+    },
+    {
+      "date": "2024-05-02",
+      "open": 35.0,
+      "high": 36.36,
+      "low": 34.65,
+      "close": 36.0,
+      "volume": 1200000
+    },
+    {
+      "date": "2024-06-03",
+      "open": 36.0,
+      "high": 36.36,
+      "low": 33.86,
+      "close": 34.2,
+      "volume": 1250000
+    },
+    {
+      "date": "2024-07-01",
+      "open": 34.2,
+      "high": 35.85,
+      "low": 33.86,
+      "close": 35.5,
+      "volume": 1300000
+    }
+  ]
+}

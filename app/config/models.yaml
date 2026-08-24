@@ -1,0 +1,31 @@
+# ============================================================================
+# Modelos disponíveis para uso pela aplicação e pelos experimentos.
+# ----------------------------------------------------------------------------
+# Preencha 'model' com identificadores ATUAIS de cada provedor. NÃO fixe aqui
+# versões de modelos que possam ficar obsoletas — por isso os exemplos de
+# provedores reais estão comentados. As chaves de API vêm de variáveis de
+# ambiente (ver .env.example), nunca deste arquivo.
+# ============================================================================
+
+defaults:
+  temperature: 0.0
+  max_tokens: 1024
+  timeout: 60
+
+models:
+  # Provedor 'fake': determinístico, offline, sem custo — sempre disponível.
+  - provider: fake
+    model: fake-model
+
+  # --- Exemplos de provedores reais (descomente e preencha para usar) --------
+  # - provider: openai
+  #   model: <modelo-de-chat-atual-da-openai>
+  #
+  # - provider: anthropic
+  #   model: <modelo-claude-atual>
+  #
+  # - provider: google
+  #   model: <modelo-gemini-atual>
+  #
+  # - provider: openrouter
+  #   model: <owner>/<model>   # ex.: conforme o catálogo do OpenRouter

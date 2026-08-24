@@ -1,0 +1,404 @@
+{
+  "dataset_version": "v1",
+  "snapshot_set": "default",
+  "note": "Respostas de referência computadas a partir do snapshot SINTÉTICO 'default'. Uso apenas para teste de pipeline.",
+  "questions": [
+    {
+      "id": "Q001",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da PETR4.SA entre 2024-01-02 e 2024-06-03?",
+      "params": {
+        "symbol": "PETR4.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-06-03"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": 5.0,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q002",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da VALE3.SA entre 2024-01-02 e 2024-06-03?",
+      "params": {
+        "symbol": "VALE3.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-06-03"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": -17.95,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q003",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da ITUB4.SA entre 2024-01-02 e 2024-06-03?",
+      "params": {
+        "symbol": "ITUB4.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-06-03"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": 3.64,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q004",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da AAPL entre 2024-01-02 e 2024-07-01?",
+      "params": {
+        "symbol": "AAPL",
+        "start_date": "2024-01-02",
+        "end_date": "2024-07-01"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": 13.51,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q005",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da PETR4.SA entre 2024-01-02 e 2024-04-01?",
+      "params": {
+        "symbol": "PETR4.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-04-01"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": 16.67,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q006",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da VALE3.SA entre 2024-03-01 e 2024-07-01?",
+      "params": {
+        "symbol": "VALE3.SA",
+        "start_date": "2024-03-01",
+        "end_date": "2024-07-01"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": 2.94,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q007",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da AAPL entre 2024-04-01 e 2024-07-01?",
+      "params": {
+        "symbol": "AAPL",
+        "start_date": "2024-04-01",
+        "end_date": "2024-07-01"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": 23.53,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q008",
+      "category": "return_calculation",
+      "question": "Qual foi o retorno percentual da ITUB4.SA entre 2024-02-01 e 2024-06-03?",
+      "params": {
+        "symbol": "ITUB4.SA",
+        "start_date": "2024-02-01",
+        "end_date": "2024-06-03"
+      },
+      "expected_tools": [
+        "calculate_return",
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "percent",
+        "value": -0.87,
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "Q009",
+      "category": "factual_quote",
+      "question": "Qual é a cotação mais recente disponível da PETR4.SA?",
+      "params": {
+        "symbol": "PETR4.SA"
+      },
+      "expected_tools": [
+        "get_stock_quote"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "currency",
+        "value": 41.0,
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "Q010",
+      "category": "factual_quote",
+      "question": "Qual é a cotação mais recente disponível da VALE3.SA?",
+      "params": {
+        "symbol": "VALE3.SA"
+      },
+      "expected_tools": [
+        "get_stock_quote"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "currency",
+        "value": 70.0,
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "Q011",
+      "category": "factual_quote",
+      "question": "Qual é a cotação mais recente disponível da AAPL?",
+      "params": {
+        "symbol": "AAPL"
+      },
+      "expected_tools": [
+        "get_stock_quote"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "currency",
+        "value": 210.0,
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "Q012",
+      "category": "factual_quote",
+      "question": "Qual é a cotação mais recente disponível da ITUB4.SA?",
+      "params": {
+        "symbol": "ITUB4.SA"
+      },
+      "expected_tools": [
+        "get_stock_quote"
+      ],
+      "expected_answer": {
+        "type": "numeric",
+        "unit": "currency",
+        "value": 35.5,
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "Q013",
+      "category": "comparison",
+      "question": "Considerando a cotação mais recente, qual dos ativos a seguir tem o maior preço: PETR4.SA, VALE3.SA?",
+      "params": {
+        "symbols": [
+          "PETR4.SA",
+          "VALE3.SA"
+        ]
+      },
+      "expected_tools": [
+        "compare_stocks"
+      ],
+      "expected_answer": {
+        "type": "categorical",
+        "value": "VALE3.SA",
+        "accept": [
+          "VALE3.SA",
+          "VALE3"
+        ]
+      }
+    },
+    {
+      "id": "Q014",
+      "category": "comparison",
+      "question": "Considerando a cotação mais recente, qual dos ativos a seguir tem o maior preço: ITUB4.SA, PETR4.SA?",
+      "params": {
+        "symbols": [
+          "ITUB4.SA",
+          "PETR4.SA"
+        ]
+      },
+      "expected_tools": [
+        "compare_stocks"
+      ],
+      "expected_answer": {
+        "type": "categorical",
+        "value": "PETR4.SA",
+        "accept": [
+          "PETR4.SA",
+          "PETR4"
+        ]
+      }
+    },
+    {
+      "id": "Q015",
+      "category": "comparison",
+      "question": "Considerando a cotação mais recente, qual dos ativos a seguir tem o maior preço: PETR4.SA, VALE3.SA, ITUB4.SA?",
+      "params": {
+        "symbols": [
+          "PETR4.SA",
+          "VALE3.SA",
+          "ITUB4.SA"
+        ]
+      },
+      "expected_tools": [
+        "compare_stocks"
+      ],
+      "expected_answer": {
+        "type": "categorical",
+        "value": "VALE3.SA",
+        "accept": [
+          "VALE3.SA",
+          "VALE3"
+        ]
+      }
+    },
+    {
+      "id": "Q016",
+      "category": "trend_analysis",
+      "question": "Com base nos fechamentos entre 2024-04-01 e 2024-07-01, a tendência de preço da AAPL foi de alta ou de baixa?",
+      "params": {
+        "symbol": "AAPL",
+        "start_date": "2024-04-01",
+        "end_date": "2024-07-01"
+      },
+      "expected_tools": [
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "categorical",
+        "value": "alta",
+        "accept": [
+          "alta",
+          "subiu",
+          "aumentou",
+          "valorizou"
+        ]
+      }
+    },
+    {
+      "id": "Q017",
+      "category": "trend_analysis",
+      "question": "Com base nos fechamentos entre 2024-01-02 e 2024-04-01, a tendência de preço da VALE3.SA foi de alta ou de baixa?",
+      "params": {
+        "symbol": "VALE3.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-04-01"
+      },
+      "expected_tools": [
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "categorical",
+        "value": "baixa",
+        "accept": [
+          "baixa",
+          "caiu",
+          "queda",
+          "recuou",
+          "desvalorizou"
+        ]
+      }
+    },
+    {
+      "id": "Q018",
+      "category": "trend_analysis",
+      "question": "Com base nos fechamentos entre 2024-01-02 e 2024-07-01, a tendência de preço da PETR4.SA foi de alta ou de baixa?",
+      "params": {
+        "symbol": "PETR4.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-07-01"
+      },
+      "expected_tools": [
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "categorical",
+        "value": "alta",
+        "accept": [
+          "alta",
+          "subiu",
+          "aumentou",
+          "valorizou"
+        ]
+      }
+    },
+    {
+      "id": "Q019",
+      "category": "interpretation",
+      "question": "Com base nos dados de PETR4.SA entre 2024-01-02 e 2024-06-03, descreva de forma concisa o comportamento do preço no período.",
+      "params": {
+        "symbol": "PETR4.SA",
+        "start_date": "2024-01-02",
+        "end_date": "2024-06-03"
+      },
+      "expected_tools": [
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "qualitative"
+      }
+    },
+    {
+      "id": "Q020",
+      "category": "interpretation",
+      "question": "Com base nos dados de AAPL entre 2024-01-02 e 2024-07-01, descreva de forma concisa o comportamento do preço no período.",
+      "params": {
+        "symbol": "AAPL",
+        "start_date": "2024-01-02",
+        "end_date": "2024-07-01"
+      },
+      "expected_tools": [
+        "get_stock_history"
+      ],
+      "expected_answer": {
+        "type": "qualitative"
+      }
+    }
+  ]
+}

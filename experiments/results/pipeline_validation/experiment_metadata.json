@@ -1,0 +1,14 @@
+{
+  "experiment_id": "pipeline-validation-oracle",
+  "n_rows": 60,
+  "price_table": {
+    "price_table_version": "unset",
+    "price_table_generated_at": "unset",
+    "unit": "per_1m_tokens",
+    "currency": "USD",
+    "configured": false
+  },
+  "kind": "pipeline_validation",
+  "model": "oracle-fake (deterministic mock, NOT a real LLM)",
+  "note": "Valida o pipeline; nao representa desempenho de modelo de linguagem."
+}

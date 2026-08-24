@@ -1,0 +1,69 @@
+{
+  "symbol": "PETR4.SA",
+  "currency": "BRL",
+  "as_of": "2024-07-01",
+  "note": "Dados SINTÉTICOS para teste de pipeline — não representam valores reais de mercado.",
+  "quote": {
+    "price": 41.0,
+    "date": "2024-07-01",
+    "timestamp": "2024-07-01T21:00:00Z"
+  },
+  "history": [
+    {
+      "date": "2024-01-02",
+      "open": 36.0,
+      "high": 36.36,
+      "low": 35.64,
+      "close": 36.0,
+      "volume": 1000000
+    },
+    {
+      "date": "2024-02-01",
+      "open": 36.0,
+      "high": 40.91,
+      "low": 35.64,
+      "close": 40.5,
+      "volume": 1050000
+    },
+    {
+      "date": "2024-03-01",
+      "open": 40.5,
+      "high": 40.91,
+      "low": 37.62,
+      "close": 38.0,
+      "volume": 1100000
+    },
+    {
+      "date": "2024-04-01",
+      "open": 38.0,
+      "high": 42.42,
+      "low": 37.62,
+      "close": 42.0,
+      "volume": 1150000
+    },
+    {
+      "date": "2024-05-02",
+      "open": 42.0,
+      "high": 42.42,
+      "low": 39.2,
+      "close": 39.6,
+      "volume": 1200000
+    },
+    {
+      "date": "2024-06-03",
+      "open": 39.6,
+      "high": 40.0,
+      "low": 37.42,
+      "close": 37.8,
+      "volume": 1250000
+    },
+    {
+      "date": "2024-07-01",
+      "open": 37.8,
+      "high": 41.41,
+      "low": 37.42,
+      "close": 41.0,
+      "volume": 1300000
+    }
+  ]
+}

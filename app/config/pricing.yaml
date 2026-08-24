@@ -1,0 +1,27 @@
+# ============================================================================
+# Tabela de preços por modelo (para estimativa de custo).
+# ----------------------------------------------------------------------------
+# IMPORTANTE: preços de API mudam. NÃO trate estes valores como permanentes.
+# Preencha 'prices' com os preços OFICIAIS atuais de cada modelo e ATUALIZE
+# 'version' e 'generated_at'. Enquanto um modelo não estiver aqui, seu custo
+# estimado será 'null' (nunca inventamos um valor).
+# ----------------------------------------------------------------------------
+# 'unit' define a base dos preços: 'per_1k_tokens' ou 'per_1m_tokens'.
+# ============================================================================
+
+version: "unset"
+generated_at: "unset"
+unit: per_1m_tokens
+currency: USD
+
+prices: {}
+
+# Exemplo de preenchimento (descomente e ajuste com os valores oficiais):
+# version: "2025-01"
+# generated_at: "2025-01-15"
+# unit: per_1m_tokens
+# currency: USD
+# prices:
+#   "<id-do-modelo-exato-usado>":
+#     input: 0.00       # preço por 1M tokens de entrada
+#     output: 0.00      # preço por 1M tokens de saída
