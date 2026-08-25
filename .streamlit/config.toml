@@ -1,0 +1,16 @@
+# Config do Streamlit lido a partir da RAIZ do projeto (CWD ao rodar
+# `streamlit run frontend/streamlit_app.py`). Aparência clara e profissional.
+[theme]
+base = "light"
+primaryColor = "#1E4E79"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#1B2733"
+font = "sans serif"
+
+[client]
+# Navegação controlada por st.navigation (evita menu automático duplicado).
+showSidebarNavigation = false
+
+[browser]
+gatherUsageStats = false

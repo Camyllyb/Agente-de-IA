@@ -19,8 +19,9 @@ def inject_styles() -> None:
 
 
 def sidebar_brand() -> None:
+    # translate="no" evita que o tradutor do navegador altere o nome do produto.
     st.markdown(
-        '<div class="fpl-brand">Financial Prompt Lab</div>'
+        '<div class="fpl-brand" translate="no">Financial Prompt Lab</div>'
         '<div class="fpl-brand-sub">Análise financeira assistida por IA</div>',
         unsafe_allow_html=True,
     )
@@ -28,7 +29,7 @@ def sidebar_brand() -> None:
 
 def page_header(title: str, subtitle: str) -> None:
     st.markdown(
-        f'<div class="fpl-hero"><div class="fpl-hero-title">{title}</div>'
+        f'<div class="fpl-hero"><div class="fpl-hero-title" translate="no">{title}</div>'
         f'<div class="fpl-hero-sub">{subtitle}</div></div>',
         unsafe_allow_html=True,
     )

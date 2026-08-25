@@ -2,26 +2,26 @@
 # Tabela de preços por modelo (para estimativa de custo).
 # ----------------------------------------------------------------------------
 # IMPORTANTE: preços de API mudam. NÃO trate estes valores como permanentes.
-# Preencha 'prices' com os preços OFICIAIS atuais de cada modelo e ATUALIZE
-# 'version' e 'generated_at'. Enquanto um modelo não estiver aqui, seu custo
-# estimado será 'null' (nunca inventamos um valor).
+# Atualize 'version'/'generated_at' sempre que alterar. Modelos sem preço aqui
+# resultam em custo estimado 'null' (nunca inventamos um valor).
 # ----------------------------------------------------------------------------
-# 'unit' define a base dos preços: 'per_1k_tokens' ou 'per_1m_tokens'.
+# 'unit' = base dos preços: 'per_1k_tokens' ou 'per_1m_tokens'.
 # ============================================================================
 
-version: "unset"
-generated_at: "unset"
+version: "2026-08-gemini"
+generated_at: "2026-08-24"
 unit: per_1m_tokens
 currency: USD
 
-prices: {}
+prices:
+  # Fonte: https://ai.google.dev/gemini-api/docs/pricing (consultado 2026-08-24).
+  # Paid tier (standard), válido até 31/12/2026. A partir de 01/01/2027 sobe
+  # para 1.50 (entrada) / 7.50 (saída) — atualize aqui quando mudar.
+  gemini-3.6-flash:
+    input: 0.75
+    output: 3.75
 
-# Exemplo de preenchimento (descomente e ajuste com os valores oficiais):
-# version: "2025-01"
-# generated_at: "2025-01-15"
-# unit: per_1m_tokens
-# currency: USD
-# prices:
-#   "<id-do-modelo-exato-usado>":
-#     input: 0.00       # preço por 1M tokens de entrada
-#     output: 0.00      # preço por 1M tokens de saída
+# Exemplos de outros modelos (preencha com os preços OFICIAIS ao usar):
+#  <id-do-modelo-exato>:
+#    input: 0.00
+#    output: 0.00

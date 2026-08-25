@@ -17,15 +17,18 @@ models:
   - provider: fake
     model: fake-model
 
-  # --- Exemplos de provedores reais (descomente e preencha para usar) --------
+  # Google (Gemini) — requer GOOGLE_API_KEY no .env.
+  # Ajuste o 'model' para o Gemini atual que preferir (ex.: gemini-3.6-flash,
+  # gemini-3.6-pro). 'gemini-3.6-flash' é rápido e econômico.
+  - provider: google
+    model: gemini-3.6-flash
+
+  # --- Exemplos de outros provedores (descomente e preencha para usar) -------
   # - provider: openai
   #   model: <modelo-de-chat-atual-da-openai>
   #
   # - provider: anthropic
   #   model: <modelo-claude-atual>
-  #
-  # - provider: google
-  #   model: <modelo-gemini-atual>
   #
   # - provider: openrouter
   #   model: <owner>/<model>   # ex.: conforme o catálogo do OpenRouter

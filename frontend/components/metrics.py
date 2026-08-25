@@ -23,7 +23,8 @@ def execution_details(response: dict) -> None:
         c1.metric("Latência", f"{metrics.get('latency_ms', 0)} ms")
         c2.metric("Tokens (total)", metrics.get("total_tokens", 0))
         cost = metrics.get("estimated_cost")
-        c3.metric("Custo estimado", "—" if cost in (None, "") else f"{cost}")
+        cost_txt = "—" if cost in (None, "") else f"US$ {float(cost):.6f}"
+        c3.metric("Custo estimado", cost_txt)
 
         st.caption(
             f"Modelo: **{response.get('provider','?')}/{response.get('model','?')}**  ·  "

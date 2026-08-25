@@ -20,10 +20,21 @@ from services import api_client  # noqa: E402
 
 inject_styles()
 
+
+@st.cache_data(ttl=10, show_spinner=False)
+def _health_ok() -> bool:
+    return api_client.health().ok
+
+
+@st.cache_data(ttl=60, show_spinner=False)
+def _models_data():
+    result = api_client.get_models()
+    return result.data if result.ok else None
+
+
 # --- Cabeçalho + status ------------------------------------------------------
 page_header("Financial Prompt Lab", "Seu assistente para análise de dados do mercado financeiro.")
-health = api_client.health()
-status_badge(health.ok)
+status_badge(_health_ok())
 
 # --- Sidebar: configurações --------------------------------------------------
 STRATEGY_BY_LABEL = {v: k for k, v in STRATEGY_LABELS.items()}
@@ -33,18 +44,24 @@ def _sidebar() -> dict:
     with st.sidebar:
         st.markdown("### Configurações")
 
-        models_res = api_client.get_models()
+        models_data = _models_data()
         options = []
-        if models_res.ok:
-            for m in models_res.data.get("models", []):
+        default_provider = default_model = None
+        if models_data:
+            default_provider = models_data.get("default_provider")
+            default_model = models_data.get("default_model")
+            for m in models_data.get("models", []):
                 options.append((m["provider"], m["model"], m.get("available", True)))
         if not options:
             options = [("fake", "fake-model", True)]
 
         providers = sorted({p for p, _, _ in options})
-        provider = st.selectbox("Provider", providers, format_func=str.capitalize)
+        p_index = providers.index(default_provider) if default_provider in providers else 0
+        provider = st.selectbox("Provider", providers, index=p_index, format_func=str.capitalize)
         models_for_provider = [(m, av) for p, m, av in options if p == provider]
-        model = st.selectbox("Modelo", [m for m, _ in models_for_provider])
+        model_names = [m for m, _ in models_for_provider]
+        m_index = model_names.index(default_model) if default_model in model_names else 0
+        model = st.selectbox("Modelo", model_names, index=m_index)
         available = dict(models_for_provider).get(model, True)
         if not available:
             st.info("Este modelo requer uma chave de API configurada no servidor.")

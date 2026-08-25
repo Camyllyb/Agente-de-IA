@@ -69,10 +69,10 @@ def test_success_rate() -> None:
 
 # --- Custo (tabela configurável e versionada) -------------------------------
 
-def test_price_table_unconfigured_returns_none() -> None:
-    table = load_price_table()  # pricing.yaml vem sem preços
-    assert table.is_configured() is False
-    assert table.estimate("qualquer-modelo", 1000, 500) is None
+def test_price_table_unknown_model_returns_none() -> None:
+    table = load_price_table()
+    # Modelo sem preço configurado -> custo nulo (nunca inventa).
+    assert table.estimate("modelo-desconhecido-xyz", 1000, 500) is None
 
 
 def test_price_table_configured_estimates() -> None:

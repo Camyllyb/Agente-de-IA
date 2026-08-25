@@ -47,7 +47,9 @@ def test_list_models_includes_fake_and_hides_keys() -> None:
 def test_chat_with_fake_provider() -> None:
     response = client.post(
         "/api/chat",
-        json={"message": "Olá, o que você faz?", "strategy": "zero_shot"},
+        # Provider explícito -> teste isolado do provedor padrão do .env (offline).
+        json={"message": "Olá, o que você faz?", "strategy": "zero_shot",
+              "provider": "fake", "model": "fake-model"},
     )
     assert response.status_code == 200
     body = response.json()

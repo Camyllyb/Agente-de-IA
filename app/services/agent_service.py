@@ -101,8 +101,16 @@ def run_chat(request: ChatRequest) -> ChatResponse:
             input_tokens=result.usage.input_tokens,
             output_tokens=result.usage.output_tokens,
             total_tokens=result.usage.total_tokens,
+            estimated_cost=_estimate_cost(result.model, result.usage.input_tokens, result.usage.output_tokens),
         ),
     )
+
+
+def _estimate_cost(model: str, input_tokens: int, output_tokens: int) -> float | None:
+    """Custo estimado via tabela de preços configurável (None se não configurado)."""
+    from app.metrics import load_price_table
+
+    return load_price_table().estimate(model, input_tokens, output_tokens)
 
 
 def _extract_data_used(tool_calls) -> list[dict]:
