@@ -18,6 +18,13 @@ PERIODS = {
     "7 dias": 7, "30 dias": 30, "3 meses": 91, "6 meses": 182, "1 ano": 365,
 }
 
+# Universo sugerido para o modo ao vivo (símbolos no formato do Yahoo/yfinance:
+# ações e FIIs da B3 usam sufixo .SA). Lista de conveniência do produto.
+LIVE_UNIVERSE = [
+    "PETR4.SA", "VALE3.SA", "ITUB4.SA", "BBAS3.SA", "WEGE3.SA",
+    "HGLG11.SA", "MXRF11.SA", "KNRI11.SA", "XPML11.SA", "VISC11.SA", "AAPL",
+]
+
 
 def _toolset(source: str, snapshot_set: str) -> FinancialToolset:
     provider = get_market_data_provider(source, snapshot_set=snapshot_set)
@@ -25,7 +32,9 @@ def _toolset(source: str, snapshot_set: str) -> FinancialToolset:
 
 
 def available_symbols(source: str = "snapshot", snapshot_set: str = "default") -> list[str]:
-    """Ativos com dados disponíveis (apenas a fonte snapshot os lista)."""
+    """Ativos sugeridos: do snapshot (dados congelados) ou o universo ao vivo."""
+    if source == "live":
+        return list(LIVE_UNIVERSE)
     provider = get_market_data_provider(source, snapshot_set=snapshot_set)
     return provider.available_symbols() if hasattr(provider, "available_symbols") else []
 

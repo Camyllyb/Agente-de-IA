@@ -67,7 +67,7 @@ class LiveMarketDataProvider(MarketDataProvider):
         quote_date = last_index.date().isoformat()
         return Quote(
             symbol=symbol,
-            price=float(last["Close"]),
+            price=round(float(last["Close"]), 4),
             currency=self._currency_for(ticker, symbol),
             date=quote_date,
             timestamp=last_index.isoformat(),
@@ -90,10 +90,10 @@ class LiveMarketDataProvider(MarketDataProvider):
         bars = [
             HistoryBar(
                 date=idx.date().isoformat(),
-                open=float(row["Open"]),
-                high=float(row["High"]),
-                low=float(row["Low"]),
-                close=float(row["Close"]),
+                open=round(float(row["Open"]), 4),
+                high=round(float(row["High"]), 4),
+                low=round(float(row["Low"]), 4),
+                close=round(float(row["Close"]), 4),
                 volume=int(row["Volume"]) if not _is_nan(row["Volume"]) else None,
             )
             for idx, row in history.iterrows()
